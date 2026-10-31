@@ -1,58 +1,37 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>BE BEAUTY CAM - Best Beauty Camera</title>
-<meta name="description" content="Beauty Camera with Real Filters & Canva Editor">
-<meta name="robots" content="index,follow">
+<title>BE BEAUTY CAM</title>
 <meta name="google-site-verification" content="PASTE_YOUR_GOOGLE_CODE_HERE">
-<style>
-body{margin:0;font-family:Inter;background:#000}
-video#mainV{width:100%;height:100vh;object-fit:cover;position:fixed;top:0;left:0}
-#filters{position:fixed;bottom:90px;left:0;right:0;background:#fff;border-radius:20px 20px 0 0;display:none;gap:12px;overflow:auto;padding:16px 12px;z-index:10;white-space:nowrap}
-.f{display:inline-block;text-align:center}
-.f img{width:62px;height:62px;border-radius:50%;border:2px solid #000;object-fit:cover}
-.bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:12px 0 20px;border-radius:20px 20px 0 0;z-index:11}
-.cam{width:74px;height:74px;background:#000;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-top:-40px;border:4px solid #fff;font-size:28px}
-#projModal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:#fff;z-index:99;overflow:auto}
-.tool{display:inline-block;text-align:center;margin-right:18px;font-size:12px}
-</style></head><body>
+<style>body{margin:0;font-family:Inter;background:#000} #mainV{width:100%;height:100vh;object-fit:cover;position:fixed;top:0;left:0;transform:none!important} #filters{position:fixed;bottom:90px;left:0;right:0;background:#fff;border-radius:20px 20px 0 0;display:none;gap:12px;overflow:auto;padding:12px;z-index:10;white-space:nowrap} .bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;color:#000;display:flex;justify-content:space-around;padding:12px 0 20px;border-radius:20px 20px 0 0;z-index:11} .cam{width:74px;height:74px;background:#000;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-top:-40px;border:4px solid #fff;font-size:24px} .modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:#fff;color:#000;z-index:99;overflow:auto;padding:14px}</style></head><body>
 
 <video id="mainV" autoplay playsinline></video>
-
+<canvas id="preview" style="display:none"></canvas>
 <div id="filters"></div>
 
 <div class="bottom">
 <div onclick="projModal.style.display='block'">📁<br>Projects</div>
 <div onclick="filters.style.display='flex'">✨<br>Filters</div>
-<div class="cam" onclick="let f=document.getElementById('filters'); f.style.display=f.style.display=='flex'?'none':'flex'">📷</div>
-<div>▶️<br>Shorts</div>
-<div>👤<br>Profile</div>
+<div class="cam" onclick="let f=document.getElementById('filters');f.style.display=f.style.display=='flex'?'none':'flex'">📷</div>
+<div onclick="alert('Shorts coming soon - Reels removed')">▶️<br>Shorts</div>
+<div onclick="profileModal.style.display='block'">👤<br>Profile</div>
 </div>
 
-<div id="projModal">
-<div style="display:flex;justify-content:space-between;padding:12px;border-bottom:1px solid #eee"><span onclick="projModal.style.display='none'">← Projects</span><span>Summer Vlog.mp4 ▼</span><span>↩️ ↪️ ⋯</span></div>
-<div style="padding:0 5%"><video style="width:100%;margin-top:15px;border-radius:16px;background:#000" controls poster="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=400"></video>
-<div style="margin:12px 0;font-size:12px;color:#666">0:12 / 0:30 <span style="float:right">100%</span></div>
-</div>
-<div style="padding:14px"><b>EDITING TOOLS</b>
-<div style="display:flex;overflow:auto;margin-top:12px;padding-bottom:10px">
-<div class="tool">✂️<br>Trim</div><div class="tool">◐<br>Cut</div><div class="tool">◍◍<br>Filters</div><div class="tool">T<br>Text</div><div class="tool">☆<br>Stickers</div><div class="tool">♪<br>Music</div><div class="tool">✨<br>Effects</div><div class="tool">⛶<br>Resize</div><div class="tool">💼<br>Brand Kit</div><div class="tool">⬆️<br>Export</div><div class="tool">🎬<br>Layers</div>
-</div>
-<input type="file" id="fileInput" accept="video/*,image/*" style="display:none" onchange="alert('Video loaded for editing!')">
-<p onclick="fileInput.click()" style="border:2px dashed #000;padding:22px;text-align:center;border-radius:12px;margin:20px 10px">+ Select Video/Photo to Edit</p>
-<p style="padding:0 10px">📁 My Projects<br>🎨 Templates<br>🗑️ Trash</p>
-</div>
-</div>
+<div id="projModal" class="modal"><h3 onclick="this.parentElement.style.display='none'">← Projects</h3><input type="file" id="fileInput" accept="video/*,image/*"><p>Canva Tools: Trim, Cut, Text, Stickers, Music, Effects, Export</p></div>
+<div id="profileModal" class="modal"><h3 onclick="this.parentElement.style.display='none'">← Profile</h3><button onclick="alert('Login Done')">Login</button></div>
+<div id="payModal" style="display:none;position:fixed;top:40%;left:10%;width:80%;background:#fff;color:#000;border-radius:16px;padding:20px;z-index:999;text-align:center;box-shadow:0 10px 30px #0005"><h3>🔒 Premium LENS</h3><p>Is filter ke liye $2.99 pay karo</p><button onclick="this.parentElement.style.display='none'" style="background:#000;color:#fff;padding:10px 20px;border-radius:20px">Pay Now</button><br><button onclick="this.parentElement.style.display='none'" style="margin-top:10px">Close</button></div>
 
 <script>
+const mainV=document.getElementById('mainV');
+const filters=document.getElementById('filters');
 const list=[
-{img:'https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=200',n:'Fox Eye'},
-{img:'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200',n:'Barbie LENS'},
-{img:'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=200',n:'Douyin'},
-{img:'https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?w=200',n:'E-Girl LENS'},
-{img:'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=200',n:'Dramatic'},
-{img:'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200',n:'Natural'}
+{n:'Fox Eye',lens:false},{n:'Barbie LENS',lens:true},{n:'Douyin',lens:false},{n:'E-Girl LENS',lens:true},{n:'Dramatic',lens:false},{n:'Natural',lens:false},{n:'Soft LENS',lens:true},{n:'Baby Face',lens:false},{n:'Bold Glam',lens:false},{n:'Cat Eye LENS',lens:true},{n:'Clear Skin',lens:false},{n:'Rosy LENS',lens:true},{n:'Angel',lens:false},{n:'Honey LENS',lens:true},{n:'Smokey',lens:false},{n:'Crystal LENS',lens:true}
 ];
-const bar=document.getElementById('filters');
-list.forEach(x=>{let d=document.createElement('div');d.className='f';d.innerHTML=`<img src="${x.img}"><br>${x.n}`;bar.appendChild(d);});
-navigator.mediaDevices.getUserMedia({video:{facingMode:'user'}}).then(s=>mainV.srcObject=s).catch(()=>{});
+list.forEach(x=>{
+let d=document.createElement('div');d.style.display='inline-block';d.style.textAlign='center';d.style.marginRight='14px';
+d.innerHTML=`<div style="width:62px;height:62px;border-radius:50%;background:#eee;display:flex;align-items:center;justify-content:center;border:2px solid #000;font-size:10px">${x.lens?'LENS':''}👩</div><span style="font-size:11px">${x.n}</span>`;
+d.onclick=()=>{if(x.lens){document.getElementById('payModal').style.display='block';}else{mainV.style.filter='brightness(1.1)';filters.style.display='none';}};
+filters.appendChild(d);
+});
+navigator.mediaDevices.getUserMedia({video:{facingMode:'user'}}).then(s=>mainV.srcObject=s);
+function takePhoto(){}
 </script>
-</body></html>  
+</body></html>
