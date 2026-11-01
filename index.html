@@ -1,37 +1,50 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>BE BEAUTY CAM</title>
-<meta name="google-site-verification" content="PASTE_YOUR_GOOGLE_CODE_HERE">
-<style>body{margin:0;font-family:Inter;background:#000} #mainV{width:100%;height:100vh;object-fit:cover;position:fixed;top:0;left:0;transform:none!important} #filters{position:fixed;bottom:90px;left:0;right:0;background:#fff;border-radius:20px 20px 0 0;display:none;gap:12px;overflow:auto;padding:12px;z-index:10;white-space:nowrap} .bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;color:#000;display:flex;justify-content:space-around;padding:12px 0 20px;border-radius:20px 20px 0 0;z-index:11} .cam{width:74px;height:74px;background:#000;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-top:-40px;border:4px solid #fff;font-size:24px} .modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:#fff;color:#000;z-index:99;overflow:auto;padding:14px}</style></head><body>
-
+<title>Tlkae& Beauty</title>
+<meta name="description" content="Tlkae& Beauty App - 16+ Heavy Filters">
+<meta name="robots" content="index,follow">
+<meta name="google-site-verification" content="PASTE_CODE">
+<style>
+:root{--sage:#8FA89B}*{margin:0;box-sizing:border-box;font-family:Inter}body{background:#000;color:#fff;overflow:hidden;height:100vh}
+.top{position:fixed;top:0;left:0;right:0;background:var(--sage);padding:16px 20px;z-index:20}
+.logo{font-size:28px;font-weight:900;color:#fff;letter-spacing:2px;display:flex;align-items:center;gap:10px;text-transform:uppercase}
+.logo span{color:#fff;text-shadow:0 2px 4px #0003}
+#mainV{width:100%;height:100vh;object-fit:cover;position:fixed;top:0;left:0;transform:none!important}
+#filters{position:fixed;bottom:48%;left:0;right:0;display:flex;gap:12px;overflow-x:auto;padding:12px 14px;background:rgba(0,0,0,0.7);z-index:10}
+.f{min-width:70px;text-align:center}.f img{width:64px;height:64px;border-radius:50%;border:2px solid #fff}.lens{font-size:7px;background:#000;color:#fff;padding:2px 6px;border-radius:10px;position:relative;top:-8px;display:inline-block;border:1px solid #fff}
+.centerCam{position:fixed;bottom:38%;left:50%;transform:translateX(-50%);width:82px;height:82px;background:#fff;border-radius:50%;border:5px solid #000;display:flex;align-items:center;justify-content:center;z-index:15;font-size:30px;box-shadow:0 4px 20px #0008}
+.bottom{position:fixed;bottom:0;left:0;right:0;background:#111;display:flex;justify-content:space-around;padding:14px 20px 26px;z-index:14}
+.bottom div{text-align:center;font-size:12px;cursor:pointer}
+.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:#f5f3ef;color:#000;z-index:100;overflow:auto;padding:16px}
+.box{border:1.5px solid #000;border-radius:16px;padding:16px;margin:10px;background:#fff;cursor:pointer;display:flex;justify-content:space-between}
+.stars span{font-size:28px;cursor:pointer}
+</style></head><body>
+<div class="top"><div class="logo">🌿 <span>TLKAE & BEAUTY</span> ✨</div></div>
 <video id="mainV" autoplay playsinline></video>
-<canvas id="preview" style="display:none"></canvas>
 <div id="filters"></div>
-
+<div class="centerCam" onclick="capture()">📷</div>
 <div class="bottom">
-<div onclick="projModal.style.display='block'">📁<br>Projects</div>
-<div onclick="filters.style.display='flex'">✨<br>Filters</div>
-<div class="cam" onclick="let f=document.getElementById('filters');f.style.display=f.style.display=='flex'?'none':'flex'">📷</div>
-<div onclick="alert('Shorts coming soon - Reels removed')">▶️<br>Shorts</div>
-<div onclick="profileModal.style.display='block'">👤<br>Profile</div>
+<div onclick="editM.style.display='block'">✏️<br>Edit</div>
+<div onclick="reelsM.style.display='block'">🎞️<br>Reels</div>
+<div onclick="profileM.style.display='block'">👤<br>Profile</div>
 </div>
 
-<div id="projModal" class="modal"><h3 onclick="this.parentElement.style.display='none'">← Projects</h3><input type="file" id="fileInput" accept="video/*,image/*"><p>Canva Tools: Trim, Cut, Text, Stickers, Music, Effects, Export</p></div>
-<div id="profileModal" class="modal"><h3 onclick="this.parentElement.style.display='none'">← Profile</h3><button onclick="alert('Login Done')">Login</button></div>
-<div id="payModal" style="display:none;position:fixed;top:40%;left:10%;width:80%;background:#fff;color:#000;border-radius:16px;padding:20px;z-index:999;text-align:center;box-shadow:0 10px 30px #0005"><h3>🔒 Premium LENS</h3><p>Is filter ke liye $2.99 pay karo</p><button onclick="this.parentElement.style.display='none'" style="background:#000;color:#fff;padding:10px 20px;border-radius:20px">Pay Now</button><br><button onclick="this.parentElement.style.display='none'" style="margin-top:10px">Close</button></div>
+<div id="editM" class="modal"><h3 onclick="editM.style.display='none'">← Edit</h3>
+<div style="display:flex"><div class="box" style="flex:1" onclick="proj.style.display='block';draft.style.display='none'"><div><b>PROJECTS</b><br><small>Edit Export Crop</small></div>→</div><div class="box" style="flex:1" onclick="draft.style.display='block';proj.style.display='none'"><div><b>DRAFTS</b><br><small>Edited + AI Video</small></div>→</div></div>
+<div style="padding:12px"><b>Would you like this app?</b><div class="stars"><span onclick="rate(1)">★</span><span onclick="rate(2)">★</span><span onclick="rate(3)">★</span><span onclick="rate(4)">★</span><span onclick="rate(5)">★</span></div><p id="msg"></p></div>
+<div id="proj" style="display:none;padding:12px"><h3>Projects Editor</h3><input type="file" id="fileIn" accept="video/*,image/*"><div style="display:flex;gap:10px;overflow:auto;margin:10px 0"><span>✂️Trim</span><span>📐Crop</span><span>🎨BG Filter</span><span>💬Sticker</span><span>🔤Text</span><span>🎵Music</span><span>⬆️Export</span></div><video id="editV" controls style="width:100%;background:#000;border-radius:12px"></video><button onclick="alert('Exported ✅')">Export</button></div>
+<div id="draft" style="display:none;padding:12px"><div id="dlist">Edited videos here</div><button onclick="dlist.innerHTML+='<p>✨ AI Video '+new Date().toLocaleTimeString()+'</p>'">Create AI Video</button></div>
+</div>
+
+<div id="reelsM" class="modal"><h3 onclick="reelsM.style.display='none'">← Reels</h3><video controls style="width:100%;border-radius:12px" src="https://www.w3schools.com/html/mov_bbb.mp4"></video></div>
+<div id="profileM" class="modal"><h3 onclick="profileM.style.display='none'">← Profile</h3><div style="display:flex;flex-direction:column;gap:10px;padding:20px"><button onclick="login('Email')">Sign up / Login Email</button><button onclick="login('Google')" style="background:#000;color:#fff;padding:12px;border-radius:10px">Google Sign up / Login</button><p id="user"></p></div></div>
+<div id="payM" style="display:none;position:fixed;top:30%;left:10%;width:80%;background:#fff;color:#000;padding:20px;border-radius:16px;z-index:999;text-align:center"><h3>Premium LENS $2.99</h3><input placeholder="Card Number"><br><input placeholder="MM/YY CVC"><br><button onclick="payM.style.display='none';alert('Unlocked ✅')" style="background:#000;color:#fff;padding:10px 20px;border-radius:20px;margin-top:10px">Pay</button></div>
 
 <script>
 const mainV=document.getElementById('mainV');
-const filters=document.getElementById('filters');
-const list=[
-{n:'Fox Eye',lens:false},{n:'Barbie LENS',lens:true},{n:'Douyin',lens:false},{n:'E-Girl LENS',lens:true},{n:'Dramatic',lens:false},{n:'Natural',lens:false},{n:'Soft LENS',lens:true},{n:'Baby Face',lens:false},{n:'Bold Glam',lens:false},{n:'Cat Eye LENS',lens:true},{n:'Clear Skin',lens:false},{n:'Rosy LENS',lens:true},{n:'Angel',lens:false},{n:'Honey LENS',lens:true},{n:'Smokey',lens:false},{n:'Crystal LENS',lens:true}
-];
-list.forEach(x=>{
-let d=document.createElement('div');d.style.display='inline-block';d.style.textAlign='center';d.style.marginRight='14px';
-d.innerHTML=`<div style="width:62px;height:62px;border-radius:50%;background:#eee;display:flex;align-items:center;justify-content:center;border:2px solid #000;font-size:10px">${x.lens?'LENS':''}👩</div><span style="font-size:11px">${x.n}</span>`;
-d.onclick=()=>{if(x.lens){document.getElementById('payModal').style.display='block';}else{mainV.style.filter='brightness(1.1)';filters.style.display='none';}};
-filters.appendChild(d);
-});
-navigator.mediaDevices.getUserMedia({video:{facingMode:'user'}}).then(s=>mainV.srcObject=s);
-function takePhoto(){}
-</script>
-</body></html>
+const list=[{n:'Natural',img:'https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=200',l:0},{n:'Barbie LENS',img:'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200',l:1},{n:'Douyin',img:'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=200',l:0},{n:'E-Girl LENS',img:'https://images.unsplash.com/photo-1502823403499-6ccfcf4fb453?w=200',l:1},{n:'Dramatic',img:'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=200',l:0},{n:'Soft LENS',img:'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=200',l:1},{n:'Baby',img:'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200',l:0},{n:'Cat Eye LENS',img:'https://images.unsplash.com/photo-1488426783937-a6d8a4d1a3f1?w=200',l:1},{n:'Clear',img:'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=200',l:0},{n:'Rosy LENS',img:'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=200',l:1},{n:'Angel',img:'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=200',l:0},{n:'Honey LENS',img:'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200',l:1},{n:'Smokey',img:'https://images.unsplash.com/photo-1509967413606-2f4b0b145a54?w=200',l:0},{n:'Crystal LENS',img:'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=200',l:1},{n:'Glow',img:'https://images.unsplash.com/photo-1496440737103-cd596325d314?w=200',l:0},{n:'Velvet',img:'https://images.unsplash.com/photo-1506863530036-1efeddceb993?w=200',l:0}];
+const bar=document.getElementById('filters');list.forEach(f=>{let d=document.createElement('div');d.className='f';d.innerHTML=`<img src="${f.img}"><div class="lens" style="display:${f.l?'inline-block':'none'}">LENS</div><br>${f.n}`;d.onclick=()=>{if(f.l)payM.style.display='block';else mainV.style.filter='brightness(1.15)'};bar.appendChild(d);});
+navigator.mediaDevices.getUserMedia({video:{facingMode:'user'}}).then(s=>{mainV.srcObject=s;mainV.style.transform='none'}).catch(()=>alert('HTTPS pe Allow karo'));
+function capture(){let c=document.createElement('canvas');c.width=mainV.videoWidth;c.height=mainV.videoHeight;c.getContext('2d').drawImage(mainV,0,0);let a=document.createElement('a');a.download='Tlkae.jpg';a.href=c.toDataURL();a.click();}
+function rate(n){document.getElementById('msg').innerText=n+' Stars Thanks!';}function login(t){document.getElementById('user').innerText=t+' Logged ✅';}
+document.getElementById('fileIn').addEventListener('change',e=>{document.getElementById('editV').src=URL.createObjectURL(e.target.files[0])});
+</script></body></html>
